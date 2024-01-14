@@ -1,0 +1,54 @@
+﻿@model five_mvc_project.Models.loginmodel
+
+@{
+    ViewBag.Title = "login";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="form-horizontal shadow p-3 mb-5 bg-white rounded">
+            <h2 class="text text-center text-capitalize">login</h2>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2" for="email">Email</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", onfocus = "setAutocomplete(this, 'off_email')" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="password">Password</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Login" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div>
+                <h8>Don't have an account</h8>
+                @Html.ActionLink("Register", "Register")
+            </div>
+        </div>
+            }
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
